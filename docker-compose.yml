@@ -1,5 +1,21 @@
 version: "3"
 services:
+  https-portal:
+    container_name: 'docker_https-portal_1'
+    image: steveltn/https-portal:1
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - nginx
+    restart: on-failure:5
+    volumes:
+      - ./certs:/var/lib/https-portal
+    environment:
+      WORKER_PROCESSES: auto
+      WORKER_CONNECTIONS: 2048
+      CLIENT_MAX_BODY_SIZE: 128M
+
   php:
     build: ./php
     volumes:

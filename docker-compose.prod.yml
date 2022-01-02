@@ -1,0 +1,7 @@
+version: "3"
+services:
+  https-portal:
+    environment:
+      STAGE: production
+      DOMAINS: >-
+          syosetu.api.bz0.work -> http://nginx
